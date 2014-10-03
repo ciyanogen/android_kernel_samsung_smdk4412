@@ -506,6 +506,20 @@ struct samsung_battery_platform_data {
 	bool battery_standever;
 };
 
+#ifdef CONFIG_BATTERY_MAX77693_CHARGER_CONTROL
+extern void charger_control_init(struct battery_info *info);
+struct max77693_dev;
+extern void charger_control_set_charger(struct max77693_dev *dev);
+extern int charge_control_is_flag(int flag);
+
+enum {
+	CHRG_CTRL_IGNORE_UNSTABLE = 0,
+	CHRG_CTRL_IGNORE_MARGIN,
+	CHRG_CTRL_FLAGS
+};
+#endif
+
 extern bool device_charging;
+extern bool is_cable_attached;
 
 #endif /* __MACH_SAMSUNG_BATTERY_H */
